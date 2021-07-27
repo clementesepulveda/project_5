@@ -9,7 +9,6 @@ function Random(numbers) {
 }
 
 router.get('/', async (ctx) => {
-  const { cloudinary } = ctx.state;
   try{
     const picturesList = await ctx.orm.picture.findAll();
     const index = Random(picturesList.length);
