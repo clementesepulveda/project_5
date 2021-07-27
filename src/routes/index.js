@@ -3,15 +3,21 @@ const pkg = require('../../package.json');
 
 const router = new KoaRouter();
 
-function Random() {
-  var rnd = Math.floor(Math.random() * 1000000000);
-  console.log('HELP');
+function Random(numbers) {
+  var rnd = Math.floor(Math.random() * numbers);
   return rnd
 }
 
 router.get('/', async (ctx) => {
-  const rand = Random();
-  await ctx.render('index', { rand, notice: ctx.flashMessage.notice });
+  const { cloudinary } = ctx.state;
+  try{
+    const picturesList = await ctx.orm.picture.findAll();
+    const index = Random(picturesList.length);
+    const pictureURL = picturesList[index].URL
+    await ctx.render('index', { pictureURL, notice: ctx.flashMessage.notice });
+  } catch {
+    ctx.throw(400);
+  }
 });
 
 module.exports = router;

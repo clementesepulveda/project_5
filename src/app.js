@@ -11,6 +11,7 @@ const assets = require('./assets');
 const mailer = require('./mailers');
 const routes = require('./routes');
 const orm = require('./models');
+const cloudinary = require('cloudinary').v2;
 
 // App constructor
 const app = new Koa();
@@ -82,6 +83,13 @@ render(app, {
 });
 
 mailer(app);
+
+app.use((ctx, next) => {
+  if (process.env.CLOUDINARY_URL){
+    ctx.state.cloudinary = cloudinary;
+  }
+  return next();
+});
 
 // Routing middleware
 app.use(routes.routes());
