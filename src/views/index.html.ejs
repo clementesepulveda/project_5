@@ -2,12 +2,34 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="./src/index.scss">
+  <!-- <link rel="stylesheet" type="text/css" href="./src/index.scss"> -->
+
+  <style>
+    h1 {
+      text-align:center;
+    }
+
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+      max-width: 1000px;
+    }
+
+    form {
+      text-align: center;
+    }
+
+  </style>
 </head>
 
+
+
 <body>
-  <h1 style="text-align:center;">Happy Fourth</h1>
-  <img style="width:80%;" src="<%= pictureURL %>" alt="picture of us" onClick="window.location.reload();">
+  <h1>Happy Fourth</h1>
+  <img src="<%= pictureURL %>" alt="picture of us" onClick="window.location.reload();">
+  <br>
   <form name="rn">
     <button onClick="window.location.reload();">Refresh Page</button>
   </form>
